@@ -1,10 +1,10 @@
 {
   "windows": {
     "main": {
-      "x": -32,
-      "y": -795,
+      "x": 32,
+      "y": -1038,
       "width": 1280,
-      "height": 720,
+      "height": 901,
       "layout": {
         "docks": [
           {
@@ -75,11 +75,11 @@
         "type": "dock"
       }
     },
-    "worker": {
-      "x": 520,
-      "y": 278,
-      "width": 400,
-      "height": 300
+    "editor-window-1463518499137": {
+      "x": 320,
+      "y": 128,
+      "width": 800,
+      "height": 622
     }
   }
 }
