@@ -2,15 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //    default: null,
-        //    url: cc.Texture2D,  // optional, default is typeof default
-        //    serializable: true, // optional, default is true
-        //    visible: true,      // optional, default is true
-        //    displayName: 'Foo', // optional
-        //    readonly: false,    // optional, default is false
-        // },
-        // ...
+        
     },
 
     // use this for initialization
@@ -20,28 +12,26 @@ cc.Class({
         cc.eventManager.addListener({
             event: cc.EventListener.KEYBOARD, 
             onKeyPressed: function(keyCode, event) {
+                var move;
                 switch(keyCode) {
                     case cc.KEY.w:
                     case cc.KEY.up:
-                        console.log('turn left');
-                        self.node.y += 50;
+                        move = cc.moveBy(0.3, cc.p(0, 50)).easing(cc.easeCubicActionOut());
                         break;
                     case cc.KEY.a:
                     case cc.KEY.left:
-                        console.log('turn left');
-                        self.node.x -= 50;
+                        move = cc.moveBy(0.3, cc.p(-50, 0)).easing(cc.easeCubicActionOut());
                         break;
                     case cc.KEY.s:
                     case cc.KEY.down:
-                        console.log('turn left');
-                        self.node.y -= 50;
+                        move = cc.moveBy(0.3, cc.p(0, -50)).easing(cc.easeCubicActionOut());
                         break;
                     case cc.KEY.d:
                     case cc.KEY.right:
-                        console.log('turn right');
-                        self.node.x += 50;
+                        move = cc.moveBy(0.3, cc.p(50, 0)).easing(cc.easeCubicActionOut());
                         break;
                 }
+                self.node.runAction(move);
             }
         }, self.node);
     },

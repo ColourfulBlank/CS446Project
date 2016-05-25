@@ -101,7 +101,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "New Sprite",
+    "_name": "background",
     "_objFlags": 0,
     "_opacity": 255,
     "_color": {
@@ -122,8 +122,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 36
+      "width": 1000,
+      "height": 700
     },
     "_children": [],
     "_rotationX": 0,
@@ -163,10 +163,10 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+      "__uuid__": "d75c1420-b880-4c4b-9813-961c85babf16"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -188,13 +188,15 @@
       "__id__": 3
     },
     "_enabled": true,
-    "_defaultClip": null,
+    "_defaultClip": {
+      "__uuid__": "7cd4bd70-d572-4b41-bd38-f14cdd7fd526"
+    },
     "_clips": [
       {
         "__uuid__": "7cd4bd70-d572-4b41-bd38-f14cdd7fd526"
       }
     ],
-    "playOnLoad": false
+    "playOnLoad": true
   },
   {
     "__type__": "cc.Canvas",
