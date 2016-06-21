@@ -1,7 +1,11 @@
-const PipeGroup = require('PipeGroup');
+"use strict";
+cc._RFpush(module, 'ded04ocxo1Pcopg6kafVPGn', 'PipeGroupManager');
+// scripts/PipeGroupManager.js
+
+var PipeGroup = require('PipeGroup');
 
 var PipeGroupManager = cc.Class({
-    extends: cc.Component,
+    'extends': cc.Component,
     //-- 属性
     properties: {
         pipePrefab: cc.Prefab,
@@ -11,19 +15,19 @@ var PipeGroupManager = cc.Class({
         spawnInterval: 0
     },
     //-- 初始化
-    init: function (game) {
+    init: function init(game) {
         this.game = game;
         this.pipeList = [];
         this.isRunning = false;
     },
-    startSpawn () {
+    startSpawn: function startSpawn() {
         this.spawnPipe();
         this.schedule(this.spawnPipe, this.spawnInterval);
         this.isRunning = true;
     },
     //-- 创建管道组
-    spawnPipe () {
-        let pipeGroup = null;
+    spawnPipe: function spawnPipe() {
+        var pipeGroup = null;
         if (cc.pool.hasObject(PipeGroup)) {
             pipeGroup = cc.pool.getFromPool(PipeGroup);
         } else {
@@ -35,18 +39,20 @@ var PipeGroupManager = cc.Class({
         pipeGroup.init(this);
         this.pipeList.push(pipeGroup);
     },
-    despawnPipe (pipe) {
+    despawnPipe: function despawnPipe(pipe) {
         pipe.node.removeFromParent();
         pipe.node.active = false;
         cc.pool.putInPool(pipe);
     },
     //-- 获取下个未通过的水管
-    getNext: function () {
+    getNext: function getNext() {
         return this.pipeList.shift();
     },
-    reset () {
+    reset: function reset() {
         this.unschedule(this.spawnPipe);
         this.pipeList = [];
         this.isRunning = false;
     }
 });
+
+cc._RFpop();

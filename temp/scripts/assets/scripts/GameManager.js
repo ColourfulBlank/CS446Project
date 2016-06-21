@@ -1,14 +1,18 @@
+"use strict";
+cc._RFpush(module, '327f03mWlNHJqsi+VEpOBXC', 'GameManager');
+// scripts/GameManager.js
+
 var Sheep = require('Sheep');
 var Scroller = require('Scroller');
 var PipeGroupManager = require('PipeGroupManager');
 
 var GameState = cc.Enum({
     Menu: -1,
-    Run : -1,
+    Run: -1,
     Over: -1
 });
 var GameManager = cc.Class({
-    extends: cc.Component,
+    'extends': cc.Component,
     //-- 属性
     properties: {
         //-- 获取绵羊
@@ -25,26 +29,26 @@ var GameManager = cc.Class({
         scoreText: cc.Label,
         //-- 获取背景音效
         gameBgAudio: {
-            default: null,
+            'default': null,
             url: cc.AudioClip
         },
         //-- 获取死亡音效
         dieAudio: {
-            default: null,
+            'default': null,
             url: cc.AudioClip
         },
         //-- 获取失败音效
         gameOverAudio: {
-            default: null,
+            'default': null,
             url: cc.AudioClip
         },
         //-- 获取得分音效
         scoreAudio: {
-            default: null,
+            'default': null,
             url: cc.AudioClip
         }
     },
-    onLoad () {
+    onLoad: function onLoad() {
         //-- 游戏状态
         this.gameState = GameState.Menu;
         //-- 分数
@@ -55,13 +59,13 @@ var GameManager = cc.Class({
         this.pipeGroupMgr.init(this);
     },
     //-- 开始
-    start () {
+    start: function start() {
         this.gameState = GameState.Run;
         this.score = 0;
         this.pipeGroupMgr.startSpawn();
         this.sheep.startRun();
     },
-    gameOver () {
+    gameOver: function gameOver() {
         //-- 背景音效停止，死亡音效播放
         cc.audioEngine.stopMusic(this.gameBgAudio);
         cc.audioEngine.playEffect(this.dieAudio);
@@ -72,7 +76,7 @@ var GameManager = cc.Class({
         this.gameOverMenu.getComponent('GameOverMenu').score.string = this.score;
     },
     //-- 更新分数
-    gainScore () {
+    gainScore: function gainScore() {
         //-- 分数+1
         this.score++;
         this.scoreText.string = this.score;
@@ -80,3 +84,5 @@ var GameManager = cc.Class({
         cc.audioEngine.playEffect(this.scoreAudio);
     }
 });
+
+cc._RFpop();

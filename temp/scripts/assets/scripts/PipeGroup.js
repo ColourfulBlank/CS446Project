@@ -1,5 +1,9 @@
+"use strict";
+cc._RFpush(module, '5026dczn8lKZpq2Z+LGadpZ', 'PipeGroup');
+// scripts/PipeGroup.js
+
 var PipeGroup = cc.Class({
-    extends: cc.Component,
+    "extends": cc.Component,
     properties: {
         speed: 0,
         resetX: 0,
@@ -8,15 +12,15 @@ var PipeGroup = cc.Class({
         topPipe: cc.Node,
         botPipe: cc.Node
     },
-    init (pipeMng) {
+    init: function init(pipeMng) {
         this.pipeMng = pipeMng;
-        let botYPos = this.botYRange.x + Math.random() * (this.botYRange.y - this.botYRange.x);
-        let space = this.spacingRange.x + Math.random() * (this.spacingRange.y - this.spacingRange.x);
-        let topYPos = botYPos + space;
+        var botYPos = this.botYRange.x + Math.random() * (this.botYRange.y - this.botYRange.x);
+        var space = this.spacingRange.x + Math.random() * (this.spacingRange.y - this.spacingRange.x);
+        var topYPos = botYPos + space;
         this.topPipe.y = topYPos;
         this.botPipe.y = botYPos;
     },
-    update: function (dt) {
+    update: function update(dt) {
         if (this.pipeMng.isRunning === false) {
             return;
         }
@@ -26,3 +30,5 @@ var PipeGroup = cc.Class({
         }
     }
 });
+
+cc._RFpop();

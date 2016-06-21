@@ -6,7 +6,7 @@
   "filterMode": "bilinear",
   "subMetas": {
     "default_progressbar": {
-      "ver": "1.0.2",
+      "ver": "1.0.3",
       "uuid": "67e68bc9-dad5-4ad9-a2d8-7e03d458e32f",
       "rawTextureUuid": "cfef78f1-c8df-49b7-8ed0-4c953ace2621",
       "trimType": "auto",
@@ -18,6 +18,8 @@
       "trimY": 0,
       "width": 30,
       "height": 15,
+      "rawWidth": 30,
+      "rawHeight": 15,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 5,

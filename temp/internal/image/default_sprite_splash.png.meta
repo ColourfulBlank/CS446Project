@@ -6,7 +6,7 @@
   "filterMode": "bilinear",
   "subMetas": {
     "default_sprite_splash": {
-      "ver": "1.0.2",
+      "ver": "1.0.3",
       "uuid": "a23235d1-15db-4b95-8439-a2e005bfff91",
       "rawTextureUuid": "0275e94c-56a7-410f-bd1a-fc7483f7d14a",
       "trimType": "auto",
@@ -18,6 +18,8 @@
       "trimY": 0,
       "width": 2,
       "height": 2,
+      "rawWidth": 2,
+      "rawHeight": 2,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,

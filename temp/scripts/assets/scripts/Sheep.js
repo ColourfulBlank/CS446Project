@@ -1,18 +1,22 @@
+"use strict";
+cc._RFpush(module, 'ff4b8pGzIRNxZt3wHXtOqB+', 'Sheep');
+// scripts/Sheep.js
+
 //-- 绵羊状态
 var State = cc.Enum({
-    None   : -1,
-    Run    : -1,
-    Jump   : -1,
-    Drop   : -1,
+    None: -1,
+    Run: -1,
+    Jump: -1,
+    Drop: -1,
     DropEnd: -1,
-    Dead   : -1
+    Dead: -1
 });
 
 var Dust = require('Dust');
 
 var Sheep = cc.Class({
     //-- 继承
-    extends: cc.Component,
+    'extends': cc.Component,
     //-- 属性
     properties: {
         colliderRadius: 0,
@@ -26,15 +30,15 @@ var Sheep = cc.Class({
         initJumpSpeed: 0,
         //-- 绵羊状态
         _state: {
-            default: State.None,
+            'default': State.None,
             type: State,
             visible: false
         },
         state: {
-            get: function () {
+            get: function get() {
                 return this._state;
             },
-            set: function(value){
+            set: function set(value) {
                 if (value !== this._state) {
                     this._state = value;
                     if (this._state !== State.None) {
@@ -48,7 +52,7 @@ var Sheep = cc.Class({
         },
         //-- 获取Jump音效
         jumpAudio: {
-            default: null,
+            'default': null,
             url: cc.AudioClip
         },
         dustPrefab: cc.Prefab
@@ -56,7 +60,7 @@ var Sheep = cc.Class({
     statics: {
         State: State
     },
-    init (game) {
+    init: function init(game) {
         this.game = game;
         //-- 当前播放动画组件
         this.anim = this.getComponent(cc.Animation);
@@ -66,42 +70,42 @@ var Sheep = cc.Class({
         this.sprite = this.getComponent(cc.Sprite);
         this.registerInput();
     },
-    startRun () {
+    startRun: function startRun() {
         this.getNextPipe();
         this.state = State.Run;
         this.enableInput(true);
     },
     //-- 初始化
-    registerInput () {
+    registerInput: function registerInput() {
         //-- 添加绵羊控制事件(为了注销事件缓存事件)
         cc.eventManager.addListener({
             event: cc.EventListener.KEYBOARD,
-            onKeyPressed: function(keyCode, event) {
+            onKeyPressed: (function (keyCode, event) {
                 this.jump();
-            }.bind(this)
+            }).bind(this)
         }, this.node);
         // touch input
         cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
-            onTouchBegan: function(touch, event) {
+            onTouchBegan: (function (touch, event) {
                 this.jump();
                 return true;
-            }.bind(this)
+            }).bind(this)
         }, this.node);
     },
     //-- 删除
-    enableInput: function (enable) {
+    enableInput: function enableInput(enable) {
         if (enable) {
             cc.eventManager.resumeTarget(this.node);
         } else {
             cc.eventManager.pauseTarget(this.node);
         }
     },
-    getNextPipe () {
+    getNextPipe: function getNextPipe() {
         this.nextPipe = this.game.pipeGroupMgr.getNext();
     },
     //-- 更新
-    update (dt) {
+    update: function update(dt) {
         if (this.state === State.None || this.state === State.Dead) {
             return;
         }
@@ -110,7 +114,7 @@ var Sheep = cc.Class({
         this._detectCollision();
     },
     //-- 更新绵羊状态
-    _updateState (dt) {
+    _updateState: function _updateState(dt) {
         switch (this.state) {
             case Sheep.State.Jump:
                 if (this.currentSpeed < 0) {
@@ -126,11 +130,11 @@ var Sheep = cc.Class({
                 break;
         }
     },
-    onDropFinished () {
+    onDropFinished: function onDropFinished() {
         this.state = State.Run;
     },
     //-- 更新绵羊坐标
-    _updatePosition (dt) {
+    _updatePosition: function _updatePosition(dt) {
         var flying = this.state === Sheep.State.Jump || this.node.y > this.groundY;
         if (flying) {
             this.currentSpeed -= dt * this.gravity;
@@ -138,26 +142,24 @@ var Sheep = cc.Class({
         }
     },
     //-- 碰撞检测
-    _detectCollision () {
+    _detectCollision: function _detectCollision() {
         if (!this.nextPipe) {
             return;
         }
-        let collide = false;
+        var collide = false;
         // objects
-        let sheepTop = this.node.y + this.colliderRadius * 2;
-        let sheepBot = this.node.y;
-        let sheepRight = this.node.x + this.colliderRadius;
-        let sheepLeft = this.node.x - this.colliderRadius;
-        let topPipe = this.nextPipe.topPipe;
-        let botPipe = this.nextPipe.botPipe;
+        var sheepTop = this.node.y + this.colliderRadius * 2;
+        var sheepBot = this.node.y;
+        var sheepRight = this.node.x + this.colliderRadius;
+        var sheepLeft = this.node.x - this.colliderRadius;
+        var topPipe = this.nextPipe.topPipe;
+        var botPipe = this.nextPipe.botPipe;
         // top collision
-        if (sheepTop > topPipe.y && sheepRight > this.nextPipe.node.x - topPipe.width/2 &&
-            sheepLeft < this.nextPipe.node.x + topPipe.width/2) {
+        if (sheepTop > topPipe.y && sheepRight > this.nextPipe.node.x - topPipe.width / 2 && sheepLeft < this.nextPipe.node.x + topPipe.width / 2) {
             collide = true;
         }
         // bot collision
-        if (sheepTop < botPipe.y && sheepRight > this.nextPipe.node.x - botPipe.width/2 &&
-            sheepLeft < this.nextPipe.node.x + botPipe.width/2) {
+        if (sheepTop < botPipe.y && sheepRight > this.nextPipe.node.x - botPipe.width / 2 && sheepLeft < this.nextPipe.node.x + botPipe.width / 2) {
             collide = true;
         }
 
@@ -167,22 +169,22 @@ var Sheep = cc.Class({
             this.enableInput(false);
         } else {
             // if jump over
-            if (sheepLeft > this.nextPipe.node.x + topPipe.width/2) {
+            if (sheepLeft > this.nextPipe.node.x + topPipe.width / 2) {
                 this.game.gainScore();
                 this.getNextPipe();
             }
         }
     },
     //-- 开始跳跃设置状态数据，播放动画
-    jump: function () {
+    jump: function jump() {
         this.state = State.Jump;
         this.currentSpeed = this.initJumpSpeed;
         //-- 播放跳音效
         cc.audioEngine.playEffect(this.jumpAudio);
         this.spawnDust('DustUp');
     },
-    spawnDust (animName) {
-        let dust = null;
+    spawnDust: function spawnDust(animName) {
+        var dust = null;
         if (cc.pool.hasObject(Dust)) {
             dust = cc.pool.getFromPool(Dust);
         } else {
@@ -193,3 +195,5 @@ var Sheep = cc.Class({
         dust.playAnim(animName);
     }
 });
+
+cc._RFpop();
