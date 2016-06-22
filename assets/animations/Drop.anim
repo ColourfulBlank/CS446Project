@@ -3,7 +3,7 @@
   "_name": "Drop",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 0.5,
+  "_duration": 0.6,
   "sample": 10,
   "speed": 1,
   "wrapMode": 1,
@@ -14,19 +14,13 @@
           {
             "frame": 0,
             "value": {
-              "__uuid__": "98d9fbdc-0492-4095-9f3a-2a6ec79dabf0"
+              "__uuid__": "72ca10c8-261c-4c1d-8136-29b2b7009797"
             }
           },
           {
-            "frame": 0.2,
+            "frame": 0.5,
             "value": {
-              "__uuid__": "2707fbbb-ae14-4978-a600-c5ac0d19f276"
-            }
-          },
-          {
-            "frame": 0.4,
-            "value": {
-              "__uuid__": "a98b4f29-d6fc-473f-9267-d8424c75edfc"
+              "__uuid__": "00389588-6f92-4ae3-b52d-97790fb1a9cc"
             }
           }
         ]

@@ -1,6 +1,9 @@
-var Sheep = require('Sheep');
+var Goose = require('Goose');
 var Scroller = require('Scroller');
-var PipeGroupManager = require('PipeGroupManager');
+var HumanManager = require('HumanManager');
+var CarManager = require('CarManager');
+
+
 
 var GameState = cc.Enum({
     Menu: -1,
@@ -12,13 +15,14 @@ var GameManager = cc.Class({
     //-- 属性
     properties: {
         //-- 获取绵羊
-        sheep: Sheep,
+        goose: Goose,
         //-- 获取背景
-        sky: Scroller,
-        //-- 获取地面
-        ground: Scroller,
+        // sky: Scroller,
+        // //-- 获取地面
+        // ground: Scroller,
         //-- 获取障碍物管理
-        pipeGroupMgr: PipeGroupManager,
+        humanManager: HumanManager,
+        carManager: CarManager,
         //-- 获取gameOverMenu对象
         gameOverMenu: cc.Node,
         //-- 获取分数对象
@@ -51,22 +55,36 @@ var GameManager = cc.Class({
         this.score = 0;
         this.scoreText.string = this.score;
         this.gameOverMenu.active = false;
-        this.sheep.init(this);
-        this.pipeGroupMgr.init(this);
+        this.goose.init(this);
+        this.humanManager.init(this);
+        this.carManager.init(this);
+        
+        
+        var manager = cc.director.getCollisionManager();
+        manager.enabled = true;
+        // manager.enabledDebugDraw = true;
+        // manager.enabledDrawBoundingBox = true;
+        
     },
     //-- 开始
     start () {
         this.gameState = GameState.Run;
         this.score = 0;
-        this.pipeGroupMgr.startSpawn();
-        this.sheep.startRun();
+        this.humanManager.startSpawn();
+        this.carManager.startSpawn();
+        this.goose.startRun();
     },
     gameOver () {
+        
+        this.goose.state = Goose.State.Dead;
+        this.goose.enableInput(false);
+        
         //-- 背景音效停止，死亡音效播放
-        cc.audioEngine.stopMusic(this.gameBgAudio);
-        cc.audioEngine.playEffect(this.dieAudio);
-        cc.audioEngine.playEffect(this.gameOverAudio);
-        this.pipeGroupMgr.reset();
+        // cc.audioEngine.stopMusic(this.gameBgAudio);
+        // cc.audioEngine.playEffect(this.dieAudio);
+        // cc.audioEngine.playEffect(this.gameOverAudio);
+        this.humanManager.reset();
+        this.carManager.reset();
         this.gameState = GameState.Over;
         this.gameOverMenu.active = true;
         this.gameOverMenu.getComponent('GameOverMenu').score.string = this.score;
@@ -77,6 +95,11 @@ var GameManager = cc.Class({
         this.score++;
         this.scoreText.string = this.score;
         //-- 分数增加音效
-        cc.audioEngine.playEffect(this.scoreAudio);
+        // cc.audioEngine.playEffect(this.scoreAudio);
+    },
+    update(dt) {
+        if (Math.random() < this.score/parseFloat(1000)) {
+            this.carManager.spawnCar();    
+        }
     }
 });

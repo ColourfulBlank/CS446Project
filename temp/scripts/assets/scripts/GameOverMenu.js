@@ -1,10 +1,10 @@
 "use strict";
-cc._RFpush(module, '42ba7gAyfpGZqXEsckB6M2a', 'GameOverMenu');
+cc._RFpush(module, 'e6643BAzFdKMqZ4YJ3abY3q', 'GameOverMenu');
 // scripts/GameOverMenu.js
 
 var GameOverMenu = cc.Class({
     //-- 继承
-    'extends': cc.Component,
+    "extends": cc.Component,
     //-- 属性
     properties: {
         btn_play: cc.Button,
@@ -14,6 +14,7 @@ var GameOverMenu = cc.Class({
     init: function init() {},
     // 加载Game场景(重新开始游戏)
     restart: function restart() {
+        console.log("res");
         cc.director.loadScene('Game');
     }
 });

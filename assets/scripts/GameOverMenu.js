@@ -11,6 +11,7 @@ var GameOverMenu = cc.Class({
     },
     // 加载Game场景(重新开始游戏)
     restart: function () {
+        console.log("res");
         cc.director.loadScene('Game');
     },
 });
