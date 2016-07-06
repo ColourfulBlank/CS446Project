@@ -2,9 +2,9 @@ var Obstacle = cc.Class({
 	extends: cc.Component,
 	properties: {
 
-		speedX: 		100,
-		initX: 			200,
-		resetX: 		-100,
+		speedX: 		-600,
+		initX: 			1600,
+		resetX: 		-1600,
 		
 		initY: 			0,
 	},
@@ -21,13 +21,18 @@ var Obstacle = cc.Class({
 		}
 	},
 
+
+    init(manager) {
+    	this.manager = manager;
+    },
+
+    reset() {
+        this.node.x = this.initX;
+        this.node.y = this.initY;
+    	this.manager.despawn(this);
+    },
+
 	/*Treat the following as abstract methods*/
-
-
-	//to reset when x pass resetX
-	reset() {
-		console.log("**WARNING: Obstacle:reset(), an abstract method called");
-	},
 
 	/*
 		---Visitor pattern---
@@ -37,4 +42,15 @@ var Obstacle = cc.Class({
 	gooseVisit() {
 		console.log("**WARNING: Obstacle:gooseVisit(), an abstract method called");
 	},
+
+
+
+
+
+
+
+
+
+
+
 });

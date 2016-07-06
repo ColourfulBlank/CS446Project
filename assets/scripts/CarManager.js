@@ -36,10 +36,11 @@ var CarManager = cc.Class({
 
 	startSpawn() {
 		this.isRunning = true;
-		this.schedule(this.spawn, 2);
+		this.schedule(this.spawn, 20);
 	},
 
 	reset () {
+		// this.unschedule(this.spawnHuman);
 		this.carList = [];
 		this.isRunning = false;
 	},

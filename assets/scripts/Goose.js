@@ -125,8 +125,10 @@ var Sheep = cc.Class({
 
 
     onCollisionEnter: function (other, self) {
-        if (other instanceof Obstacle) {
-            other.gooseVisit();    
-        }
+        console.log(other.node.name);
+
+        // if (other instanceof Obstacle) {
+            other.getComponent(Obstacle).gooseVisit();    
+        // }
     },
 });

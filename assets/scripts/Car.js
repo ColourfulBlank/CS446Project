@@ -10,17 +10,9 @@ var Car = cc.Class({
 	*/
     extends: Obstacle,
 
-    init(carManager) {
-    	this.carManager = carManager;
-    },
 
     gooseVisit() {
-    	this.carManager.carHit(this);
+    	this.manager.carHit(this);
     },
 
-    reset() {
-        this.node.x = this.initX;
-        this.node.y = this.initY;
-    	this.carManager.despawn(this);
-    },
 });
