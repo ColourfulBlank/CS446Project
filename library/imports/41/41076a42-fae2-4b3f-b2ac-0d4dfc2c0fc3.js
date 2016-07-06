@@ -6,24 +6,23 @@
     Thus Human implements Obstacle interface and HumanManager implements ObstacleManager interface
 */
 
-const Human = require('Human');
-const ObstacleManager = require("ObstacleManager");
+var Human = require('Human');
+var ObstacleManager = require("ObstacleManager");
 
 var HumanManager = cc.Class({
-    extends: ObstacleManager,
-
+    "extends": ObstacleManager,
 
     /*Implementing abstract method in ObstacleManager*/
-    startSpawn() {
+    startSpawn: function startSpawn() {
         this.isRunning = true;
         this.schedule(this.spawn, 1);
     },
-    spawn() {
+    spawn: function spawn() {
         if (!this.isRunning) {
             return;
         }
 
-        let human = null;
+        var human = null;
         if (cc.pool.hasObject(Human)) {
             human = cc.pool.getFromPool(Human);
         } else {
@@ -34,10 +33,10 @@ var HumanManager = cc.Class({
         human.init(this);
         this.obstacleList.push(human);
     },
-    stopSpawn() {
+    stopSpawn: function stopSpawn() {
         this.unschedule(this.spawn);
     },
-    gainScore: function() {
+    gainScore: function gainScore() {
         this.game.gainScore();
     }
 });

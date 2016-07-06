@@ -1,12 +1,17 @@
+/*
+	Interface
+
+	Any obstacle should extend this and overwrite the abstract methods
+*/
+
 var Obstacle = cc.Class({
 	extends: cc.Component,
 	properties: {
-
 		speedX: 		-600,
-		initX: 			1600,
-		resetX: 		-1600,
+		initX: 			1600,	//initial x coordinate
+		resetX: 		-1600,	//x coordinate that the obstacle is reset(recycled)
 		
-		initY: 			0,
+		initY: 			0,		//initial y coordinate
 
 
 		/*
@@ -14,6 +19,7 @@ var Obstacle = cc.Class({
 				manager: ObstacleManager
 		*/
 	},
+
 
 	onLoad: function() {
 		this.node.x = this.initX;
@@ -31,7 +37,6 @@ var Obstacle = cc.Class({
 		}
 	},
 
-
     init(manager) {
     	this.manager = manager;
     },
@@ -46,7 +51,7 @@ var Obstacle = cc.Class({
 
 	/*
 		---Visitor pattern---
-		Called by Goose when goose collide with <this>
+		Called by Goose when goose collide with obstacle
 		Up to the concrete class to implement (decide what to do)
 	*/
 	gooseVisit() {

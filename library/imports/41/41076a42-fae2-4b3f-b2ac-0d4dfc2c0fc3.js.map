@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "sources": [
+    "unknown"
+  ],
+  "names": [],
+  "mappings": ";;;;;;;;AAQA,IAAM,KAAK,GAAG,OAAO,CAAC,OAAO,CAAC,CAAC;AAC/B,IAAM,eAAe,GAAG,OAAO,CAAC,iBAAiB,CAAC,CAAC;;AAEnD,IAAI,YAAY,GAAG,EAAE,CAAC,KAAK,CAAC;AACxB,eAAS,eAAe;;;AAIxB,cAAU,EAAA,sBAAG;AACT,YAAI,CAAC,SAAS,GAAG,IAAI,CAAC;AACtB,YAAI,CAAC,QAAQ,CAAC,IAAI,CAAC,KAAK,EAAE,CAAC,CAAC,CAAC;KAChC;AACD,SAAK,EAAA,iBAAG;AACJ,YAAI,CAAC,IAAI,CAAC,SAAS,EAAE;AACjB,mBAAO;SACV;;AAED,YAAI,KAAK,GAAG,IAAI,CAAC;AACjB,YAAI,EAAE,CAAC,IAAI,CAAC,SAAS,CAAC,KAAK,CAAC,EAAE;AAC1B,iBAAK,GAAG,EAAE,CAAC,IAAI,CAAC,WAAW,CAAC,KAAK,CAAC,CAAC;SACtC,MAAM;AACH,iBAAK,GAAG,EAAE,CAAC,WAAW,CAAC,IAAI,CAAC,MAAM,CAAC,CAAC,YAAY,CAAC,KAAK,CAAC,CAAC;SAC3D;AACD,YAAI,CAAC,KAAK,CAAC,QAAQ,CAAC,KAAK,CAAC,IAAI,CAAC,CAAC;AAChC,aAAK,CAAC,IAAI,CAAC,MAAM,GAAG,IAAI,CAAC;AACzB,aAAK,CAAC,IAAI,CAAC,IAAI,CAAC,CAAC;AACjB,YAAI,CAAC,YAAY,CAAC,IAAI,CAAC,KAAK,CAAC,CAAC;KACjC;AACD,aAAS,EAAA,qBAAG;AACR,YAAI,CAAC,UAAU,CAAC,IAAI,CAAC,KAAK,CAAC,CAAC;KAC/B;AACD,aAAS,EAAE,qBAAW;AAClB,YAAI,CAAC,IAAI,CAAC,SAAS,EAAE,CAAC;KACzB;CACJ,CAAC,CAAC",
+  "file": "unknown",
+  "sourcesContent": [
+    "/*\n    Human manager\n\n    More precisely, huaman isn't an \"obstacle\", since it doesn't kill the goose\n    But it behaves like an obstacle\n    Thus Human implements Obstacle interface and HumanManager implements ObstacleManager interface\n*/\n\nconst Human = require('Human');\nconst ObstacleManager = require(\"ObstacleManager\");\n\nvar HumanManager = cc.Class({\n    extends: ObstacleManager,\n\n\n    /*Implementing abstract method in ObstacleManager*/\n    startSpawn() {\n        this.isRunning = true;\n        this.schedule(this.spawn, 1);\n    },\n    spawn() {\n        if (!this.isRunning) {\n            return;\n        }\n\n        let human = null;\n        if (cc.pool.hasObject(Human)) {\n            human = cc.pool.getFromPool(Human);\n        } else {\n            human = cc.instantiate(this.prefab).getComponent(Human);\n        }\n        this.layer.addChild(human.node);\n        human.node.active = true;\n        human.init(this);\n        this.obstacleList.push(human);\n    },\n    stopSpawn() {\n        this.unschedule(this.spawn);\n    },\n    gainScore: function() {\n        this.game.gainScore();\n    }\n});"
+  ]
+}

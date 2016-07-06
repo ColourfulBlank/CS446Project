@@ -1,14 +1,18 @@
-const Car = require('Car');
-const ObstacleManager = require("ObstacleManager");
+"use strict";
+cc._RFpush(module, '06896Hr5EhG963y1B6iVITX', 'CarManager');
+// scripts/CarManager.js
+
+var Car = require('Car');
+var ObstacleManager = require("ObstacleManager");
 
 var CarManager = cc.Class({
-	extends: ObstacleManager,
-	
-	spawn () {
+	"extends": ObstacleManager,
+
+	spawn: function spawn() {
 		if (!this.isRunning) {
 			return;
 		}
-		let car = null;
+		var car = null;
 		if (cc.pool.hasObject(Car)) {
 			car = cc.pool.getFromPool(Car);
 		} else {
@@ -20,19 +24,18 @@ var CarManager = cc.Class({
 		this.obstacleList.push(car);
 	},
 
-
-
-	startSpawn() {
+	startSpawn: function startSpawn() {
 		this.isRunning = true;
 		this.schedule(this.spawn, 3);
 	},
 
-	stopSpawn() {
+	stopSpawn: function stopSpawn() {
 		this.unschedule(this.spawn);
 	},
 
-
-	carHit(car) {
+	carHit: function carHit(car) {
 		this.game.gameOver();
-	},
+	}
 });
+
+cc._RFpop();
