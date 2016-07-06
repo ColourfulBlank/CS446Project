@@ -10,6 +10,8 @@ var Human = cc.Class({
     */
     extends: Obstacle,
 
+    
+
     gooseVisit() {
         this.manager.gainScore(this);
     },

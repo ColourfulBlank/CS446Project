@@ -4,16 +4,16 @@ const ObstacleManager = require("ObstacleManager");
 var HumanManager = cc.Class({
     extends: ObstacleManager,
 
-    init: function (game) {
-        this.game = game;
-        this.humanList = [];
-        this.isRunning = false;
-    },
+
     startSpawn() {
         this.isRunning = true;
         this.schedule(this.spawn, 1);
     },
     spawn() {
+        if (!this.isRunning) {
+            return;
+        }
+
         let human = null;
         if (cc.pool.hasObject(Human)) {
             human = cc.pool.getFromPool(Human);
@@ -23,17 +23,10 @@ var HumanManager = cc.Class({
         this.layer.addChild(human.node);
         human.node.active = true;
         human.init(this);
-        this.humanList.push(human);
+        this.obstacleList.push(human);
     },
-    despawn(human) {
-        human.node.removeFromParent();
-        human.node.active = false;
-        cc.pool.putInPool(human);
-    },
-    reset () {
-        // this.unschedule(this.spawnHuman);
-        this.humanList = [];
-        this.isRunning = false;
+    stopSpawn() {
+        this.unschedule(this.spawn);
     },
     gainScore: function() {
         this.game.gainScore();

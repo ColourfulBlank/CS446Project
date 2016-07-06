@@ -7,6 +7,12 @@ var Obstacle = cc.Class({
 		resetX: 		-1600,
 		
 		initY: 			0,
+
+
+		/*
+			these properties wouldn't show in IDE, but use them as needed in script
+				manager: ObstacleManager
+		*/
 	},
 
 	onLoad: function() {
@@ -15,6 +21,10 @@ var Obstacle = cc.Class({
 	},
 
 	update(dt) {
+		if (!this.manager.isRunning) {
+			return;
+		}
+
 		this.node.x += this.speedX * dt;
 		if (this.node.x < this.resetX) {
 			this.reset();
@@ -42,15 +52,6 @@ var Obstacle = cc.Class({
 	gooseVisit() {
 		console.log("**WARNING: Obstacle:gooseVisit(), an abstract method called");
 	},
-
-
-
-
-
-
-
-
-
 
 
 });

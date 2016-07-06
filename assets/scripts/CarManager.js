@@ -4,15 +4,7 @@ const ObstacleManager = require("ObstacleManager");
 var CarManager = cc.Class({
 	extends: ObstacleManager,
 	
-	init(game) {
-		this.isRunning = false;
-		this.game = game;
-		this.carList = [];
-	},
-
 	spawn () {
-
-		console.log("spon")
 		if (!this.isRunning) {
 			return;
 		}
@@ -25,25 +17,23 @@ var CarManager = cc.Class({
 		this.layer.addChild(car.node);
 		car.node.active = true;
 		car.init(this);
-		this.carList.push(car);
+		this.obstacleList.push(car);
 	},
 
-	despawn (car) {
-		car.node.removeFromParent();
-		car.node.active = false;
-		cc.pool.putInPool(car);
-	},
+
 
 	startSpawn() {
+
+console.log("car spon star");
+
 		this.isRunning = true;
-		this.schedule(this.spawn, 20);
+		this.schedule(this.spawn, 3);
 	},
 
-	reset () {
-		// this.unschedule(this.spawnHuman);
-		this.carList = [];
-		this.isRunning = false;
+	stopSpawn() {
+		this.unschedule(this.spawn);
 	},
+
 
 	carHit(car) {
 		this.game.gameOver();

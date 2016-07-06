@@ -38,6 +38,12 @@
       },
       {
         "__id__": 42
+      },
+      {
+        "__id__": 45
+      },
+      {
+        "__id__": 47
       }
     ],
     "_localZOrder": 0,
@@ -691,26 +697,6 @@
     "playOnLoad": true
   },
   {
-    "__type__": "cc.BoxCollider",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 15
-    },
-    "_enabled": true,
-    "tag": 0,
-    "_offset": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 50
-    },
-    "_size": {
-      "__type__": "cc.Size",
-      "width": 170,
-      "height": 115
-    }
-  },
-  {
     "__type__": "21f81RgzrBIML5z30QRl75G",
     "_name": "",
     "_objFlags": 0,
@@ -724,6 +710,78 @@
     "gravity": 1800,
     "initJumpSpeed": 1000,
     "_state": 0
+  },
+  {
+    "__type__": "cc.PolygonCollider",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 15
+    },
+    "_enabled": true,
+    "tag": 0,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "points": [
+      {
+        "__type__": "cc.Vec2",
+        "x": -92.2,
+        "y": 103.7
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -75.2,
+        "y": 147.1
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -19.5,
+        "y": 132.4
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -3.7,
+        "y": 105.2
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 91.1,
+        "y": 77.7
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 86.7,
+        "y": 53.1
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 50,
+        "y": 43.7
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 63.4,
+        "y": 3.6
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -14.7,
+        "y": 1.2
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -54.3,
+        "y": 62.8
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -45.8,
+        "y": 83.2
+      }
+    ]
   },
   {
     "__type__": "cc.Node",
@@ -1471,7 +1529,9 @@
     "btn_play": {
       "__id__": 37
     },
-    "score": null
+    "score": {
+      "__id__": 22
+    }
   },
   {
     "__type__": "cc.Canvas",
@@ -1491,7 +1551,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Game",
+    "_name": "GameManager",
     "_objFlags": 0,
     "_opacity": 255,
     "_color": {
@@ -1537,12 +1597,6 @@
     "_components": [
       {
         "__id__": 43
-      },
-      {
-        "__id__": 44
-      },
-      {
-        "__id__": 45
       }
     ],
     "_prefab": null,
@@ -1557,14 +1611,16 @@
     },
     "_enabled": true,
     "goose": {
-      "__id__": 19
+      "__id__": 18
     },
-    "humanManager": {
-      "__id__": 44
-    },
-    "carManager": {
-      "__id__": 45
-    },
+    "managers": [
+      {
+        "__id__": 44
+      },
+      {
+        "__id__": 46
+      }
+    ],
     "gameOverMenu": {
       "__id__": 26
     },
@@ -1577,24 +1633,75 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 42
+      "__id__": 45
     },
     "_enabled": true,
-    "humanPrefab": {
+    "prefab": {
       "__uuid__": "5d687d6a-2ff0-4174-8c87-7d1cdb420a39"
     },
-    "humanLayer": {
+    "layer": {
       "__id__": 14
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "HumanManager",
+    "_objFlags": 0,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
     },
-    "initHumanX": 1300,
-    "spawnInterval": 2
+    "_cascadeOpacityEnabled": true,
+    "_parent": {
+      "__id__": 1
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_children": [],
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_tag": -1,
+    "_opacityModifyRGB": false,
+    "_reorderChildDirty": false,
+    "_id": "62968yqUHVB0bWHVCUF26zJ",
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 44
+      }
+    ],
+    "_prefab": null,
+    "groupIndex": 0
   },
   {
     "__type__": "06896Hr5EhG963y1B6iVITX",
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 42
+      "__id__": 47
     },
     "_enabled": true,
     "prefab": {
@@ -1602,7 +1709,59 @@
     },
     "layer": {
       "__id__": 13
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "CarManager",
+    "_objFlags": 0,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
     },
-    "spawnPointX": 1300
+    "_cascadeOpacityEnabled": true,
+    "_parent": {
+      "__id__": 1
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_children": [],
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_tag": -1,
+    "_opacityModifyRGB": false,
+    "_reorderChildDirty": false,
+    "_id": "26a6e3Nf0lIV6h6pzZXvgQG",
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 46
+      }
+    ],
+    "_prefab": null,
+    "groupIndex": 0
   }
 ]
