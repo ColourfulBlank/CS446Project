@@ -1,5 +1,5 @@
 "use strict";
-cc._RFpush(module, 'dc7f9S+3lNKZ6WsSK1EoA9Q', 'Scroller');
+cc._RFpush(module, '930d5LshrZBkbsK0b05li7R', 'Scroller');
 // scripts/Scroller.js
 
 cc.Class({

@@ -1,5 +1,5 @@
 "use strict";
-cc._RFpush(module, '4b772F4jUVKuKkam7mLlYZS', 'GameManager');
+cc._RFpush(module, '8dfcd67JoFBH6J/EcZmXuoI', 'GameManager');
 // scripts/GameManager.js
 
 var Goose = require('Goose');
@@ -98,8 +98,8 @@ var GameManager = cc.Class({
         // cc.audioEngine.playEffect(this.scoreAudio);
     },
     update: function update(dt) {
-        if (Math.random() < this.score / parseFloat(1000)) {
-            this.carManager.spawnCar();
+        if (Math.random() < 0.1) {
+            this.carManager.spawn();
         }
     }
 });

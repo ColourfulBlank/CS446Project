@@ -98,8 +98,8 @@ var GameManager = cc.Class({
         // cc.audioEngine.playEffect(this.scoreAudio);
     },
     update(dt) {
-        if (Math.random() < this.score/parseFloat(1000)) {
-            this.carManager.spawnCar();    
+        if (Math.random() < 0.1) {
+            this.carManager.spawn();    
         }
     }
 });

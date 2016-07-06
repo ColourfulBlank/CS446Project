@@ -5,7 +5,6 @@ build
 packages
 local
 library
-settings
 temp
 .DS_Store
 *.meta
