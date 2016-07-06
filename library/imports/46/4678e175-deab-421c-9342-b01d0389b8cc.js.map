@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "sources": [
+    "unknown"
+  ],
+  "names": [],
+  "mappings": "AAAA,IAAI,YAAY,GAAG,EAAE,CAAC,KAAK,CAAC;AACxB,eAAS,EAAE,CAAC,SAAS;AACrB,cAAU,EAAE;AACR,gBAAQ,EAAE,EAAE,CAAC,MAAM;AACnB,aAAK,EAAE,EAAE,CAAC,KAAK;KAClB;AACD,QAAI,EAAE,gBAAY,EACjB;AACD,WAAO,EAAE,mBAAY;AACjB,UAAE,CAAC,QAAQ,CAAC,SAAS,CAAC,MAAM,CAAC,CAAC;KACjC;CACJ,CAAC,CAAC",
+  "file": "unknown",
+  "sourcesContent": [
+    "var GameOverMenu = cc.Class({\n    extends: cc.Component,\n    properties: {\n        btn_play: cc.Button, //restart button\n        score: cc.Label\n    },\n    init: function () {\n    },\n    restart: function () {\n        cc.director.loadScene('Game');\n    },\n});\n"
+  ]
+}

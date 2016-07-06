@@ -1,7 +1,3 @@
-"use strict";
-cc._RFpush(module, '21f81RgzrBIML5z30QRl75G', 'Goose');
-// scripts/Goose.js
-
 var Obstacle = require("Obstacle");
 
 //stae of goose
@@ -145,5 +141,3 @@ var Goose = cc.Class({
     }
 
 });
-
-cc._RFpop();

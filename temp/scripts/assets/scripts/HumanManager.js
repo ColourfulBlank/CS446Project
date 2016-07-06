@@ -17,10 +17,12 @@ var HumanManager = cc.Class({
     "extends": ObstacleManager,
 
     /*Implementing abstract method in ObstacleManager*/
+
     startSpawn: function startSpawn() {
         this.isRunning = true;
         this.schedule(this.spawn, 1);
     },
+
     spawn: function spawn() {
         if (!this.isRunning) {
             return;
@@ -37,9 +39,11 @@ var HumanManager = cc.Class({
         human.init(this);
         this.obstacleList.push(human);
     },
+
     stopSpawn: function stopSpawn() {
         this.unschedule(this.spawn);
     },
+
     gainScore: function gainScore() {
         this.game.gainScore();
     }

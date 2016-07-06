@@ -1,7 +1,3 @@
-"use strict";
-cc._RFpush(module, '06896Hr5EhG963y1B6iVITX', 'CarManager');
-// scripts/CarManager.js
-
 var Car = require('Car');
 var ObstacleManager = require("ObstacleManager");
 
@@ -39,5 +35,3 @@ var CarManager = cc.Class({
 		this.game.gameOver();
 	}
 });
-
-cc._RFpop();

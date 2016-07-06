@@ -1,7 +1,3 @@
-"use strict";
-cc._RFpush(module, '8dfcd67JoFBH6J/EcZmXuoI', 'GameManager');
-// scripts/GameManager.js
-
 var Goose = require('Goose');
 var ObstacleManager = require('ObstacleManager');
 
@@ -81,5 +77,3 @@ var GameManager = cc.Class({
         this.scoreText.string = this.score;
     }
 });
-
-cc._RFpop();

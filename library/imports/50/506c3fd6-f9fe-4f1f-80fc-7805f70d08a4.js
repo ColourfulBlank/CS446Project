@@ -4,9 +4,7 @@
     Just alter the behavior with Visitor pattern -- gooseVisit
 */
 
-
-const Obstacle = require("Obstacle");
-
+var Obstacle = require("Obstacle");
 
 var Human = cc.Class({
     /*
@@ -16,17 +14,15 @@ var Human = cc.Class({
             resetX
             initY
     */
-    extends: Obstacle,
+    "extends": Obstacle,
 
-    
     /*Implementing abstract method in interface*/
-
 
     /*
         ---Visitor pattern---
         called by goose when collide
     */
-    gooseVisit() {
+    gooseVisit: function gooseVisit() {
         this.manager.gainScore(this);
-    },
+    }
 });

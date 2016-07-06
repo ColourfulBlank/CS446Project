@@ -4,6 +4,9 @@ const ObstacleManager = require("ObstacleManager");
 var CarManager = cc.Class({
 	extends: ObstacleManager,
 	
+
+	/*Implements abstract methods*/
+
 	spawn () {
 		if (!this.isRunning) {
 			return;
@@ -19,8 +22,6 @@ var CarManager = cc.Class({
 		car.init(this);
 		this.obstacleList.push(car);
 	},
-
-
 
 	startSpawn() {
 		this.isRunning = true;

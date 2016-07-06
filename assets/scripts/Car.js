@@ -10,7 +10,11 @@ var Car = cc.Class({
 	*/
     extends: Obstacle,
 
+    /*Implements abstract methods*/
 
+    /*
+        ---VIsitor pattern---
+    */
     gooseVisit() {
     	this.manager.carHit(this);
     },

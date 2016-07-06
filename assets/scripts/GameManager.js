@@ -13,7 +13,7 @@ var GameManager = cc.Class({
     extends: cc.Component,
     properties: {
         goose: Goose,
-        managers: {
+        managers: {     //list of obstacle managers
             default: [],
             type: [ObstacleManager],
         },
@@ -23,34 +23,26 @@ var GameManager = cc.Class({
             default: null,
             url: cc.AudioClip
         },
-        dieAudio: {
-            default: null,
-            url: cc.AudioClip
-        },
+
         gameOverAudio: {
             default: null,
             url: cc.AudioClip
         },
-        scoreAudio: {
-            default: null,
-            url: cc.AudioClip
-        }
     },
     onLoad () {
-
-        console.log("onload!!!");
         this.gameState = GameState.Menu;
         this.score = 0;
         this.scoreText.string = this.score;
         this.gameOverMenu.active = false;
         this.goose.init(this);
 
+        //init all obstacle managers
         for (var i = 0; i < this.managers.length; i++) {
             var manager = this.managers[i];
             manager.init(this);
         }
         
-        
+        //enable collision detection
         var collisionManager = cc.director.getCollisionManager();
         collisionManager.enabled = true;
 
@@ -59,19 +51,20 @@ var GameManager = cc.Class({
     start () {
         this.gameState = GameState.Run;
         this.score = 0;
+
+        //notify all obstacle managers to start spawning
         for (var i = 0; i < this.managers.length; i++) {
             var manager = this.managers[i];
             manager.startSpawn();
         }
+
         this.goose.startRun();
     },
     gameOver () {
         this.goose.state = Goose.State.Dead;
         this.goose.enableInput(false);
         
-        // cc.audioEngine.stopMusic(this.gameBgAudio);
-        // cc.audioEngine.playEffect(this.dieAudio);
-        // cc.audioEngine.playEffect(this.gameOverAudio);
+        //tell all obstacle manager to stop
         for (var i = 0; i < this.managers.length; i++) {
             var manager = this.managers[i];
             manager.gameOver();
@@ -84,6 +77,5 @@ var GameManager = cc.Class({
     gainScore () {
         this.score++;
         this.scoreText.string = this.score;
-        // cc.audioEngine.playEffect(this.scoreAudio);
     },
 });

@@ -1,5 +1,7 @@
 const Obstacle = require("Obstacle");
 
+
+//stae of goose
 var State = cc.Enum({
     None   : -1,
     Run    : -1,
@@ -10,10 +12,9 @@ var State = cc.Enum({
 });
 
 
-var Sheep = cc.Class({
+var Goose = cc.Class({
     extends: cc.Component,
     properties: {
-        colliderRadius: 0,
         maxY: 0,
         groundY: 0,
         gravity: 0,
@@ -27,6 +28,10 @@ var Sheep = cc.Class({
             get: function () {
                 return this._state;
             },
+            
+            /*
+                state setter, when state is set (changed), corresponding animation clip will be played
+            */
             set: function(value){
                 if (value !== this._state) {
                     this._state = value;
@@ -47,6 +52,8 @@ var Sheep = cc.Class({
     statics: {
         State: State
     },
+
+
     init (game) {
         this.game = game;
         this.anim = this.getComponent(cc.Animation);
@@ -56,10 +63,12 @@ var Sheep = cc.Class({
         
         this.groundY = this.node.y;
     },
+    
     startRun () {
         this.state = State.Run;
         this.enableInput(true);
     },
+    
     registerInput () {
         cc.eventManager.addListener({
             event: cc.EventListener.KEYBOARD,
@@ -76,6 +85,7 @@ var Sheep = cc.Class({
             }.bind(this)
         }, this.node);
     },
+    
     enableInput: function (enable) {
         if (enable) {
             cc.eventManager.resumeTarget(this.node);
@@ -91,14 +101,35 @@ var Sheep = cc.Class({
         this._updateState(dt);
         this._updatePosition(dt);
     },
+    
+
+    jump: function () {
+        this.state = State.Jump;
+        this.currentSpeed = this.initJumpSpeed;
+        // cc.audioEngine.playEffect(this.jumpAudio);
+    },
+
+    /*
+        collision detection
+        when collide, call obstacle's "gooseVisit" -- part of Visitor pattern
+    */
+    onCollisionEnter: function (other, self) {
+        other.getComponent(Obstacle).gooseVisit();
+    },
+
+
+
+
+
+
     _updateState (dt) {
         switch (this.state) {
-            case Sheep.State.Jump:
+            case Goose.State.Jump:
                 if (this.currentSpeed < 0) {
                     this.state = State.Drop;
                 }
                 break;
-            case Sheep.State.Drop:
+            case Goose.State.Drop:
                 if (this.node.y < this.groundY) {
                     this.node.y = this.groundY;
                     this.state = State.DropEnd;
@@ -106,27 +137,16 @@ var Sheep = cc.Class({
                 break;
         }
     },
-    onDropFinished () {
-        this.state = State.Run;
-    },
+    
     _updatePosition (dt) {
-        var flying = this.state === Sheep.State.Jump || this.node.y > this.groundY;
+        var flying = this.state === Goose.State.Jump || this.node.y > this.groundY;
         if (flying) {
             this.currentSpeed -= dt * this.gravity;
             this.node.y += dt * this.currentSpeed;
+            if (this.node.y > this.maxY) {
+                this.node.y = maxY;
+            }
         }
     },
-    jump: function () {
-        this.state = State.Jump;
-        this.currentSpeed = this.initJumpSpeed;
-        console.log(1123);
-        // cc.audioEngine.playEffect(this.jumpAudio);
-    },
-
-
-    onCollisionEnter: function (other, self) {
-
-        console.log("dasfadsfasd");
-        other.getComponent(Obstacle).gooseVisit();
-    },
+    
 });

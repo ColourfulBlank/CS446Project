@@ -1,7 +1,3 @@
-"use strict";
-cc._RFpush(module, '4678eF13qtCHJNCsB0DibjM', 'GameOverMenu');
-// scripts/GameOverMenu.js
-
 var GameOverMenu = cc.Class({
     'extends': cc.Component,
     properties: {
@@ -13,5 +9,3 @@ var GameOverMenu = cc.Class({
         cc.director.loadScene('Game');
     }
 });
-
-cc._RFpop();
