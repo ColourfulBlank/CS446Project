@@ -11,6 +11,8 @@ var CarManager = cc.Class({
 	},
 
 	spawn () {
+
+		console.log("spon")
 		if (!this.isRunning) {
 			return;
 		}
@@ -22,7 +24,6 @@ var CarManager = cc.Class({
 		}
 		this.layer.addChild(car.node);
 		car.node.active = true;
-		car.node.x = this.spawnPointX;
 		car.init(this);
 		this.carList.push(car);
 	},
@@ -35,13 +36,14 @@ var CarManager = cc.Class({
 
 	startSpawn() {
 		this.isRunning = true;
+		this.schedule(this.spawn, 2);
 	},
 
 	reset () {
 		this.carList = [];
 		this.isRunning = false;
 	},
-	
+
 	carHit(car) {
 		this.game.gameOver();
 	},

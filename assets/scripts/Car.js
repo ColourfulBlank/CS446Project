@@ -19,7 +19,8 @@ var Car = cc.Class({
     },
 
     reset() {
-        console.log("car reset");
+        this.node.x = this.initX;
+        this.node.y = this.initY;
     	this.carManager.despawn(this);
     },
 });

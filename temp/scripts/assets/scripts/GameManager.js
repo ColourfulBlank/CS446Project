@@ -97,11 +97,7 @@ var GameManager = cc.Class({
         //-- 分数增加音效
         // cc.audioEngine.playEffect(this.scoreAudio);
     },
-    update: function update(dt) {
-        if (Math.random() < 0.1) {
-            this.carManager.spawn();
-        }
-    }
+    update: function update(dt) {}
 });
 
 cc._RFpop();

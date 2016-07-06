@@ -121,10 +121,10 @@
       "__id__": 1
     },
     "_enabled": true,
-    "speedX": 100,
-    "initX": 200,
-    "resetX": -100,
-    "initY": 0
+    "speedX": -600,
+    "initX": 1600,
+    "resetX": -1600,
+    "initY": -170
   },
   {
     "__type__": "cc.PrefabInfo",
