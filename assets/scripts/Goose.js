@@ -56,12 +56,16 @@ var Goose = cc.Class({
 
     init (game) {
         this.game = game;
+        this.groundY = this.node.y;
+        this.reset();
+    },
+
+    reset() {
         this.anim = this.getComponent(cc.Animation);
         this.currentSpeed = 0;
         this.sprite = this.getComponent(cc.Sprite);
         this.registerInput();
-        
-        this.groundY = this.node.y;
+        this.node.y = this.groundY;
     },
     
     startRun () {
@@ -72,7 +76,7 @@ var Goose = cc.Class({
     registerInput () {
         cc.eventManager.addListener({
             event: cc.EventListener.KEYBOARD,
-            onKeyPressed: function(keyCode, event) {
+            onKeyPressed: function(keyCode, event) {                
                 this.jump();
             }.bind(this)
         }, this.node);
@@ -117,11 +121,6 @@ var Goose = cc.Class({
         other.getComponent(Obstacle).gooseVisit();
     },
 
-
-
-
-
-
     _updateState (dt) {
         switch (this.state) {
             case Goose.State.Jump:
@@ -132,7 +131,7 @@ var Goose = cc.Class({
             case Goose.State.Drop:
                 if (this.node.y < this.groundY) {
                     this.node.y = this.groundY;
-                    this.state = State.DropEnd;
+                    this.state = State.Run;
                 }
                 break;
         }
@@ -144,7 +143,7 @@ var Goose = cc.Class({
             this.currentSpeed -= dt * this.gravity;
             this.node.y += dt * this.currentSpeed;
             if (this.node.y > this.maxY) {
-                this.node.y = maxY;
+                this.node.y = this.maxY;
             }
         }
     },

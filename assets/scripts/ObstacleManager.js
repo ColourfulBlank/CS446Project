@@ -31,11 +31,15 @@ var ObstacleManager = cc.Class({
 	despawn (obstacle) {
 		obstacle.node.removeFromParent();
 		obstacle.node.active = false;
+		obstacle.reset();
 		cc.pool.putInPool(obstacle);
 	},
 
 	//called by game manager to notify gameover
 	gameOver () {
+		for (var obstacle in this.obstacleList) {
+			this.despawn(obstacle);
+		}
 		this.obstacleList = [];
 		this.isRunning = false;
 		this.stopSpawn();

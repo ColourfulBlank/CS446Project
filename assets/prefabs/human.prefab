@@ -79,7 +79,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "7ff4f780-fa12-42ef-9793-143b9d90de41"
+      "__uuid__": "be936910-c81b-4e14-b91b-2a5f410b3dc5"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -117,13 +117,15 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_defaultClip": null,
+    "_defaultClip": {
+      "__uuid__": "ec69564f-2664-4e12-b19d-b4bc0f872a92"
+    },
     "_clips": [
       {
-        "__uuid__": "e30f27b6-0666-40b2-987b-77dec70bc8c3"
+        "__uuid__": "ec69564f-2664-4e12-b19d-b4bc0f872a92"
       }
     ],
-    "playOnLoad": false
+    "playOnLoad": true
   },
   {
     "__type__": "cc.PolygonCollider",
@@ -243,7 +245,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "5d687d6a-2ff0-4174-8c87-7d1cdb420a39"
+      "__uuid__": "a340cc5b-cd64-4020-afd9-9e3b0341e9d2"
     },
     "fileId": "4491dCBPBNPBpmSFKFyXozh"
   }

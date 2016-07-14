@@ -2,7 +2,6 @@ const Goose = require('Goose');
 const ObstacleManager = require('ObstacleManager');
 
 var GameState = cc.Enum({
-    Menu: -1,
     Run : -1,
     Over: -1
 });
@@ -30,11 +29,15 @@ var GameManager = cc.Class({
         },
     },
     onLoad () {
-        this.gameState = GameState.Menu;
+        this.goose.init(this);
+        this.start();
+    },
+    start () {
+        this.gameState = GameState.Run;
         this.score = 0;
         this.scoreText.string = this.score;
         this.gameOverMenu.active = false;
-        this.goose.init(this);
+        this.goose.reset();
 
         //init all obstacle managers
         for (var i = 0; i < this.managers.length; i++) {
@@ -45,12 +48,6 @@ var GameManager = cc.Class({
         //enable collision detection
         var collisionManager = cc.director.getCollisionManager();
         collisionManager.enabled = true;
-
-        this.start();
-    },
-    start () {
-        this.gameState = GameState.Run;
-        this.score = 0;
 
         //notify all obstacle managers to start spawning
         for (var i = 0; i < this.managers.length; i++) {
@@ -78,4 +75,5 @@ var GameManager = cc.Class({
         this.score++;
         this.scoreText.string = this.score;
     },
+
 });

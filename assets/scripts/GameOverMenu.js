@@ -4,9 +4,4 @@ var GameOverMenu = cc.Class({
         btn_play: cc.Button, //restart button
         score: cc.Label
     },
-    init: function () {
-    },
-    restart: function () {
-        cc.director.loadScene('Game');
-    },
 });

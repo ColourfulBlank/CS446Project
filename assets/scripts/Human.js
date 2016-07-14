@@ -21,7 +21,6 @@ var Human = cc.Class({
     
     /*Implementing abstract method in interface*/
 
-
     /*
         ---Visitor pattern---
         called by goose when collide

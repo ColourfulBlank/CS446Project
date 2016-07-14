@@ -33,7 +33,7 @@ var Obstacle = cc.Class({
 
 		this.node.x += this.speedX * dt;
 		if (this.node.x < this.resetX) {
-			this.reset();
+			this.despawn();
 		}
 	},
 
@@ -42,9 +42,13 @@ var Obstacle = cc.Class({
     },
 
     reset() {
-        this.node.x = this.initX;
+    	this.node.x = this.initX;
         this.node.y = this.initY;
-    	this.manager.despawn(this);
+    },
+
+    despawn() {
+    	this.reset();
+        this.manager.despawn(this);
     },
 
 	/*Treat the following as abstract methods*/
